@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>速度：</span><input id="input" value="" type="number">
+    <button onclick="sa()" style="position: fixed;top:8px;">开始</button>
+    <br />
+    <span>间隔：</span><input id="input2" value="" type="number">
+    <button onclick="stop()" style="position: fixed;top:32px;">停止</button>
+    <button id="p" style="position: fixed;left:0px;top:64px;" onclick="win()">click me!</button>
+    <script>
+        var x = document.getElementById("p");
+        var nowxy = 0, xy, idn;
+        function ani(){
+            nowxy += xy;
+            x.style.left = nowxy + "px";
+            if(nowxy >= 1920){
+                xy = -xy;
+            }
+            if(nowxy <= 0){
+                xy = -xy;
+            }
+        }
+        function stop(){
+            clearInterval(idn);
+        }
+        function sa(){
+            xy = Number(document.getElementById("input").value);
+            var tmp = Number(document.getElementById("input2").value);
+            idn = loop(tmp);
+        }
+        function loop(tmp){
+            return setInterval(ani, tmp);
+        }
+        function win(){
+            window.alert("You win!");
+            clearInterval(idn);
+        }
+    </script>
+</body>
+</html>
